@@ -7,7 +7,8 @@
         "esModuleInterop": true,
 		"rootDir": ".",
 		"isolatedModules": true,
-        "types": ["jest"]
+        "types": ["jest"],
+		"outDir": "dist"
     },
     "include": ["src", "test"]
 }

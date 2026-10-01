@@ -1,7 +1,8 @@
-import { CommandHandler } from "./command.js";
+import { Command, CommandHandler } from "./command.js";
 import { ParameterTypes, Parameter } from "./parameter/types.js";
 
-export class CommandBuilder<TCtx extends object, TParams extends Record<string, ParameterTypes>> {
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
+export class CommandBuilder<TCtx extends object, TParams extends Record<string, ParameterTypes> = {}> {
 	private cmdName?: string;
 	private parameters: Parameter[] = [];
 	private handlerFn?: CommandHandler<TCtx, TParams>;
@@ -27,6 +28,8 @@ export class CommandBuilder<TCtx extends object, TParams extends Record<string, 
 
 	public build() {
 		if (!this.cmdName) throw new Error(`Unable to construct command since it has no name!`);
-		if (this.handlerFn) throw new Error(`Unable to construct command "${this.cmdName}" since it has no handler!`);
+		if (!this.handlerFn) throw new Error(`Unable to construct command "${this.cmdName}" since it has no handler!`);
+
+		return new Command<TCtx, TParams>(this.cmdName, this.parameters, this.handlerFn);
 	}
 }
