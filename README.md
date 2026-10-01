@@ -5,7 +5,7 @@ Literally a small command parser I made for my own use.
 ## Install
 
 ```bash
-npm install github:12354fdw/lcmd
+npm install @12354fdw/lcmd
 ```
 
 ## Usage
