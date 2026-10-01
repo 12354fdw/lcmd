@@ -1,22 +1,25 @@
-import { CommandBuilder, CommandDispatcher } from "lcmd";
+import { CommandBuilder, CommandDispatcher } from "@12354fdw/lcmd";
 
-type Context = { greeter: string };
+type Context = { num: number };
 
 const context: Context = {
-	greeter: "Bob",
+	num: 1,
 };
 
 const dispatcher = new CommandDispatcher<Context>();
 
 dispatcher.register(
 	new CommandBuilder<Context>()
-		.name("greet")
-		.parameter("name", "string")
-		.handler((ctx, { name }) => {
-			console.log(`Hello, ${name} from ${ctx.greeter}!`);
+		.name("addone")
+		.parameter("a", "number")
+		.handler((ctx, { a }) => {
+			function add(x: number) {
+				return ctx.num + x;
+			}
+			console.log(add(a));
 		})
 		.build(),
 );
 
-dispatcher.execute("greet Greg", context);
-// Hello, Greg from Bob!
+dispatcher.execute("greet 1", context);
+// 1

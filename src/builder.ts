@@ -1,5 +1,5 @@
 import { Command, CommandHandler } from "./command.js";
-import { ParameterTypes, Parameter } from "./parameter/types.js";
+import { Parameter, ParameterTypes, TypeMap } from "./parameter/types.js";
 export class CommandBuilder<
 	TCtx extends object,
 	TParams extends Record<string, ParameterTypes> = Record<string, ParameterTypes>,
@@ -19,7 +19,7 @@ export class CommandBuilder<
 			type,
 		});
 
-		return this as unknown as CommandBuilder<TCtx, TParams & { [P in K]: T }>;
+		return this as unknown as CommandBuilder<TCtx, TParams & { [P in K]: TypeMap[T] }>;
 	}
 
 	public handler(cb: CommandHandler<TCtx, TParams>) {
