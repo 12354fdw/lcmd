@@ -5,8 +5,9 @@
         "moduleResolution": "NodeNext",
         "strict": true,
         "esModuleInterop": true,
-        "outDir": "dist",
-        "rootDir": "src"
+		"rootDir": ".",
+		"isolatedModules": true,
+        "types": ["jest"]
     },
-    "include": ["src"]
+    "include": ["src", "test"]
 }
