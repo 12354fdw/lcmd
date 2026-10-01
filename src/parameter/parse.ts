@@ -1,6 +1,6 @@
 import { Parameter, ParameterTypes } from "./types.js";
 
-export function parse(arguments_: unknown[], schema: Parameter[]): Record<string, ParameterTypes> {
+export function parse(arguments_: string[], schema: Parameter[]): Record<string, ParameterTypes> {
 	if (arguments_.length !== schema.length) {
 		throw new Error(`Expected ${schema.length} arguments but got ${arguments_.length}`);
 	}

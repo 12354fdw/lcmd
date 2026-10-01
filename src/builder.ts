@@ -1,8 +1,9 @@
 import { Command, CommandHandler } from "./command.js";
 import { ParameterTypes, Parameter } from "./parameter/types.js";
-
-// eslint-disable-next-line @typescript-eslint/no-empty-object-type
-export class CommandBuilder<TCtx extends object, TParams extends Record<string, ParameterTypes> = {}> {
+export class CommandBuilder<
+	TCtx extends object,
+	TParams extends Record<string, ParameterTypes> = Record<string, ParameterTypes>,
+> {
 	private cmdName?: string;
 	private parameters: Parameter[] = [];
 	private handlerFn?: CommandHandler<TCtx, TParams>;

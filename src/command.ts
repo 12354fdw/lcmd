@@ -6,14 +6,17 @@ export type CommandHandler<TCtx extends object, TParams extends Record<string, P
 	args: TParams,
 ) => Promise<void> | void;
 
-export class Command<TCtx extends object, TParams extends Record<string, ParameterTypes>> {
+export class Command<
+	TCtx extends object,
+	TParams extends Record<string, ParameterTypes> = Record<string, ParameterTypes>,
+> {
 	constructor(
 		public readonly name: string,
 		public readonly parameters: Parameter[],
 		private readonly handler: CommandHandler<TCtx, TParams>,
 	) {}
 
-	public execute(arguments_: unknown[], ctx: TCtx) {
+	public execute(arguments_: string[], ctx: TCtx) {
 		const params = parse(arguments_, this.parameters) as TParams;
 		return this.handler(ctx, params);
 	}
